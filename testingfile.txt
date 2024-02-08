@@ -1,0 +1,49 @@
+Fitting 2 folds for each of 12 candidates, totalling 24 fits
+[CV 1/2; 1/12] START class_weight=None, criterion=gini, max_depth=800, max_features=log2, n_jobs=-1, random_state=42
+[CV 1/2; 5/12] START class_weight=balanced, criterion=gini, max_depth=800, max_features=log2, n_jobs=-1, random_state=42
+[CV 1/2; 2/12] START class_weight=None, criterion=gini, max_depth=800, max_features=None, n_jobs=-1, random_state=42
+[CV 2/2; 4/12] START class_weight=None, criterion=log_loss, max_depth=800, max_features=None, n_jobs=-1, random_state=42
+[CV 2/2; 1/12] START class_weight=None, criterion=gini, max_depth=800, max_features=log2, n_jobs=-1, random_state=42
+[CV 2/2; 6/12] START class_weight=balanced, criterion=gini, max_depth=800, max_features=None, n_jobs=-1, random_state=42
+[CV 1/2; 4/12] START class_weight=None, criterion=log_loss, max_depth=800, max_features=None, n_jobs=-1, random_state=42
+[CV 2/2; 2/12] START class_weight=None, criterion=gini, max_depth=800, max_features=None, n_jobs=-1, random_state=42
+[CV 2/2; 3/12] START class_weight=None, criterion=log_loss, max_depth=800, max_features=log2, n_jobs=-1, random_state=42
+[CV 1/2; 6/12] START class_weight=balanced, criterion=gini, max_depth=800, max_features=None, n_jobs=-1, random_state=42
+[CV 1/2; 3/12] START class_weight=None, criterion=log_loss, max_depth=800, max_features=log2, n_jobs=-1, random_state=42
+[CV 2/2; 7/12] START class_weight=balanced, criterion=log_loss, max_depth=800, max_features=log2, n_jobs=-1, random_state=42
+[CV 2/2; 8/12] START class_weight=balanced, criterion=log_loss, max_depth=800, max_features=None, n_jobs=-1, random_state=42
+[CV 1/2; 8/12] START class_weight=balanced, criterion=log_loss, max_depth=800, max_features=None, n_jobs=-1, random_state=42
+[CV 1/2; 7/12] START class_weight=balanced, criterion=log_loss, max_depth=800, max_features=log2, n_jobs=-1, random_state=42
+[CV 2/2; 5/12] START class_weight=balanced, criterion=gini, max_depth=800, max_features=log2, n_jobs=-1, random_state=42
+[CV 2/2; 1/12] END class_weight=None, criterion=gini, max_depth=800, max_features=log2, n_jobs=-1, random_state=42;, score=0.505 total time=  12.8s
+[CV 1/2; 5/12] END class_weight=balanced, criterion=gini, max_depth=800, max_features=log2, n_jobs=-1, random_state=42;, score=0.445 total time=  13.0s
+[CV 1/2; 1/12] END class_weight=None, criterion=gini, max_depth=800, max_features=log2, n_jobs=-1, random_state=42;, score=0.445 total time=  13.7s
+[CV 1/2; 9/12] START class_weight=balanced_subsample, criterion=gini, max_depth=800, max_features=log2, n_jobs=-1, random_state=42
+[CV 2/2; 9/12] START class_weight=balanced_subsample, criterion=gini, max_depth=800, max_features=log2, n_jobs=-1, random_state=42
+[CV 1/2; 10/12] START class_weight=balanced_subsample, criterion=gini, max_depth=800, max_features=None, n_jobs=-1, random_state=42
+[CV 2/2; 3/12] END class_weight=None, criterion=log_loss, max_depth=800, max_features=log2, n_jobs=-1, random_state=42;, score=0.497 total time=  28.3s
+[CV 2/2; 7/12] END class_weight=balanced, criterion=log_loss, max_depth=800, max_features=log2, n_jobs=-1, random_state=42;, score=0.474 total time=  29.4s
+[CV 2/2; 10/12] START class_weight=balanced_subsample, criterion=gini, max_depth=800, max_features=None, n_jobs=-1, random_state=42
+[CV 1/2; 11/12] START class_weight=balanced_subsample, criterion=log_loss, max_depth=800, max_features=log2, n_jobs=-1, random_state=42
+[CV 1/2; 3/12] END class_weight=None, criterion=log_loss, max_depth=800, max_features=log2, n_jobs=-1, random_state=42;, score=0.408 total time=  31.4s
+[CV 1/2; 7/12] END class_weight=balanced, criterion=log_loss, max_depth=800, max_features=log2, n_jobs=-1, random_state=42;, score=0.400 total time=  31.4s
+[CV 2/2; 11/12] START class_weight=balanced_subsample, criterion=log_loss, max_depth=800, max_features=log2, n_jobs=-1, random_state=42
+[CV 1/2; 12/12] START class_weight=balanced_subsample, criterion=log_loss, max_depth=800, max_features=None, n_jobs=-1, random_state=42
+[CV 2/2; 5/12] END class_weight=balanced, criterion=gini, max_depth=800, max_features=log2, n_jobs=-1, random_state=42;, score=0.499 total time=  35.5s
+[CV 2/2; 12/12] START class_weight=balanced_subsample, criterion=log_loss, max_depth=800, max_features=None, n_jobs=-1, random_state=42
+[CV 1/2; 9/12] END class_weight=balanced_subsample, criterion=gini, max_depth=800, max_features=log2, n_jobs=-1, random_state=42;, score=0.468 total time=  39.9s
+[CV 2/2; 9/12] END class_weight=balanced_subsample, criterion=gini, max_depth=800, max_features=log2, n_jobs=-1, random_state=42;, score=0.525 total time=  40.8s
+[CV 2/2; 4/12] END class_weight=None, criterion=log_loss, max_depth=800, max_features=None, n_jobs=-1, random_state=42;, score=0.216 total time= 1.1min
+[CV 1/2; 11/12] END class_weight=balanced_subsample, criterion=log_loss, max_depth=800, max_features=log2, n_jobs=-1, random_state=42;, score=0.382 total time=  42.7s
+[CV 2/2; 11/12] END class_weight=balanced_subsample, criterion=log_loss, max_depth=800, max_features=log2, n_jobs=-1, random_state=42;, score=0.481 total time=  45.0s
+[CV 1/2; 4/12] END class_weight=None, criterion=log_loss, max_depth=800, max_features=None, n_jobs=-1, random_state=42;, score=0.119 total time= 1.4min
+[CV 2/2; 8/12] END class_weight=balanced, criterion=log_loss, max_depth=800, max_features=None, n_jobs=-1, random_state=42;, score=0.215 total time= 1.4min
+[CV 1/2; 8/12] END class_weight=balanced, criterion=log_loss, max_depth=800, max_features=None, n_jobs=-1, random_state=42;, score=0.106 total time= 1.6min
+[CV 2/2; 12/12] END class_weight=balanced_subsample, criterion=log_loss, max_depth=800, max_features=None, n_jobs=-1, random_state=42;, score=0.212 total time= 1.4min
+[CV 1/2; 12/12] END class_weight=balanced_subsample, criterion=log_loss, max_depth=800, max_features=None, n_jobs=-1, random_state=42;, score=0.110 total time= 1.5min
+[CV 1/2; 10/12] END class_weight=balanced_subsample, criterion=gini, max_depth=800, max_features=None, n_jobs=-1, random_state=42;, score=0.343 total time= 3.4min
+[CV 2/2; 10/12] END class_weight=balanced_subsample, criterion=gini, max_depth=800, max_features=None, n_jobs=-1, random_state=42;, score=0.444 total time= 3.4min
+[CV 2/2; 2/12] END class_weight=None, criterion=gini, max_depth=800, max_features=None, n_jobs=-1, random_state=42;, score=0.452 total time= 6.0min
+[CV 1/2; 2/12] END class_weight=None, criterion=gini, max_depth=800, max_features=None, n_jobs=-1, random_state=42;, score=0.456 total time= 6.2min
+[CV 2/2; 6/12] END class_weight=balanced, criterion=gini, max_depth=800, max_features=None, n_jobs=-1, random_state=42;, score=0.418 total time= 6.3min
+[CV 1/2; 6/12] END class_weight=balanced, criterion=gini, max_depth=800, max_features=None, n_jobs=-1, random_state=42;, score=0.445 total time= 6.4min
