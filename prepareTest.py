@@ -1,5 +1,8 @@
 import pandas as pd
 
+#Tuk prosto vzimam obshtite filmi mejdu dvata file-a koito imame
+#Hardcode-nati sa koi featuri izpolzvame
+
 csv_file = 'movies_test.csv'
 testDF = pd.read_csv(csv_file, sep=';')
 
