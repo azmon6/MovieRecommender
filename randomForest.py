@@ -1,9 +1,14 @@
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import TfidfVectorizer
 from utility import *
 from ParameterSearch import searchParameters
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.gaussian_process import GaussianProcessClassifier
+from sklearn.gaussian_process.kernels import RBF
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)  # Pandas neshto mrunka
 pd.options.mode.chained_assignment = None  # default='warn'
@@ -22,9 +27,33 @@ y = data["Series_Title"]  # Target variable
 rf_model = RandomForestClassifier(max_depth=None, random_state=24, n_estimators=200, max_features="log2",criterion="gini",class_weight="balanced_subsample",bootstrap=True)
 rf_model.fit(X, y)
 
-singleTest(rf_model,tfidf_vectorizer,movieTitleEncoder)
+results =singleTest(rf_model,tfidf_vectorizer,movieTitleEncoder)
+print(results)
+
+recommenderResults = AllData[AllData['Series_Title'].isin(results)]
+recommenderResults = recommenderResults['Series_Title'] + "-" + recommenderResults['Overview']
+print(recommenderResults.to_csv(header=False,index=False,index_label=False))
+
+# looks cool
+# print(recommenderResults.to_string(header=False,index=False,index_names=False,col_space=0))
+exit(0)
+
 Testdata = pd.read_csv("testDataset.csv")
 testModel(rf_model,tfidf_vectorizer,movieTitleEncoder,Testdata)
+
+SVC_model = make_pipeline(StandardScaler(),SVC(gamma="scale", kernel="linear", random_state=42,probability=True))
+SVC_model.fit(X,y)
+singleTest(SVC_model, tfidf_vectorizer, movieTitleEncoder)
+TestdataSVC = pd.read_csv("testDataset.csv")
+testModel(SVC_model,tfidf_vectorizer,movieTitleEncoder,TestdataSVC)
+
+#Neshto ne raboti kakto trqbva
+# kernel = 1.0 * RBF(1.0)
+# GPC = GaussianProcessClassifier(kernel=kernel,random_state=42, max_iter_predict=10, n_jobs=2)
+# GPC.fit(X,y)
+# singleTest(GPC,tfidf_vectorizer,movieTitleEncoder)
+# TestdataGPC = pd.read_csv("testDataset.csv")
+# testModel(GPC,tfidf_vectorizer,movieTitleEncoder,TestdataGPC)
 
 
 # Tuk nadolu e da pusnesh da testvash koi parametri na random forest davat nay dobro accuracy

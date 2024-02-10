@@ -12,26 +12,28 @@ from scipy.sparse import hstack
 csv_file = 'movies_test.csv'
 df2 = pd.read_csv(csv_file, sep=';')
 print(df2)
-exit(0)
 # Specify the path to your CSV file
-csv_file_path = 'imdb_top_1000.csv'
-
-# Read the CSV file into a pandas DataFrame
-df = pd.read_csv(csv_file_path)
-
-# Display the DataFrame
-df.drop(df.columns[0], axis=1, inplace=True)
-df.to_csv("test.csv", sep=',',index=False)
+# csv_file_path = 'imdb_top_1000.csv'
+#
+# # Read the CSV file into a pandas DataFrame
+# df = pd.read_csv(csv_file_path)
+#
+# # Display the DataFrame
+# df.drop(df.columns[0], axis=1, inplace=True)
+# df.to_csv("test.csv", sep=',',index=False)
 
 csv_file_path2 = 'test.csv'
 df2 = pd.read_csv(csv_file_path2)
 
 print(df2.columns)
 
-csv_file_path3 = "smallDataset.csv"
-df3 = df2[['Series_Title','IMDB_Rating','Released_Year','Overview','Genre']]
-df3.to_csv("smallDataset.csv", sep=',',index=False)
+df2['Actors'] = df2['Star1'] + " " + df2['Star2'] + " " + df2['Star3'] + " " + df2['Star4']
+df2.rename(columns={'Star1':"Actors"})
 
+csv_file_path3 = "smallDataset.csv"
+df3 = df2[['Series_Title','IMDB_Rating','Released_Year','Overview','Genre','Actors']]
+df3.to_csv("smallDataset.csv", sep=',',index=False)
+exit(0)
 combined_texts = [f"{df2['Series_Title'][ind]} {df2['Overview'][ind]} {df2['Genre'][ind]}" for ind in df2.index]
 
 ratings = [df2['Meta_score'][ind] for ind in df2.index]

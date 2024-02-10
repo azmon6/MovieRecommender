@@ -28,11 +28,13 @@ def text_preprocess(ds: pd.Series, vocabulary=[]) -> pd.Series:
 #Tova prigotvq dataset-a da moje da se puska kum modela za fit/test
 #Strukturata na dataset-a e hardcode-nata zasega
 def prepareDatasets(ds: pd.DataFrame, tfidf_vectorizer, isFirst, movieTitleEncoder) -> pd.DataFrame:
+    ds['Overview'] = ds['Overview'] + ' ' + ds['Series_Title']
     ds['Series_Title'] = movieTitleEncoder.transform(ds['Series_Title']) #Imenata gi pravim na chisla
     ds['IMDB_Rating'] /= 10 #Normalizirane na dannite
     ds['Released_Year'] /= 2000 #Normalizirane na dannite
-    ds['Overview'] = ds['Overview'] + ' ' + ds['Genre'] #Vsichko koeto e string go butame v edna kolona
+    ds['Overview'] = ds['Overview'] + ' ' + ds['Genre'] + ds['Actors'] #Vsichko koeto e string go butame v edna kolona
     ds = ds.drop(columns='Genre') #I gi premahvame posle
+    ds = ds.drop(columns='Actors')
     ds['Overview'] = text_preprocess(ds['Overview']) #Vzimame samo nay vajnite dumi
     if isFirst: #Purviq put kazvame na vectorizer-a s koi dumi rabotim
         X_tfidf = tfidf_vectorizer.fit_transform(
@@ -51,7 +53,7 @@ def singleTest(model,tfidf_vectorizer,movieTitleEncoder):
     # Tova e na ruka da pusnesh da vidi s daden input kakvo vrushta i sledva sushtite stupki
     # kato pri testvane s dataset
     testInput = [0.78, 2006/2000,
-                 "Batman pls chovek Joker Batman Batman Batman Batman Joker Joker Catwoman Gotham Gotham "]
+                 "Brad Pitt action 2004 casino"]
     obrabotenText = text_preprocess(pd.Series(testInput[2]), tfidf_vectorizer.get_feature_names_out())
     obrabotenText = tfidf_vectorizer.transform(obrabotenText)
 
@@ -60,13 +62,14 @@ def singleTest(model,tfidf_vectorizer,movieTitleEncoder):
     newVectorDF = pd.DataFrame(obrabotenText.toarray(), columns=tfidf_vectorizer.get_feature_names_out())
     newDF = newDF.drop(columns=["IMDB_Rating", "Released_Year"])
     newDF = pd.concat([newDF, newVectorDF], axis=1)
-    print(newDF)
     # rezultata shte e chislo i trqbva da go decode-nesh
     # print(movieTitleEncoder.inverse_transform(model.predict(newDF)))
     # print(movieTitleEncoder.inverse_transform([pd.Series(model.predict_proba(newDF)[0]).idxmax()]))
     test = np.array(model.predict_proba(newDF)[0])
     print(test.argsort()[-5:])
-    print(movieTitleEncoder.inverse_transform(test.argsort()[-5:]))
+    what = test.argsort()[-5:]
+    result = movieTitleEncoder.inverse_transform(test.argsort()[-5:])
+    return result
 
 
 # # Dannite za test minavat prez sushtite stupki kato dannite za training
@@ -82,7 +85,7 @@ def testModel(model,tfidf_vectorizer,movieTitleEncoder,Testdata):
     # Dannite za test minavat prez sushtite stupki kato dannite za training
     Testdata = prepareDatasets(Testdata, tfidf_vectorizer, False, movieTitleEncoder)
     # Danni koito ne polzvash prosto gi dropvash
-    Testdata = Testdata.drop(columns='Actors')
+    # Testdata = Testdata.drop(columns='Actors')
 
     Test_Features = Testdata.drop(columns=["Series_Title"])  # Features
     Test_Target = Testdata["Series_Title"]  # Target variable
