@@ -49,11 +49,11 @@ def prepareDatasets(ds: pd.DataFrame, tfidf_vectorizer, isFirst, movieTitleEncod
     ds = ds.sort_index(axis=1) #Sortirash gi v pravilniq red inache modela ne raboti
     return ds
 
-def singleTest(model,tfidf_vectorizer,movieTitleEncoder):
+def singleTest(model,tfidf_vectorizer,movieTitleEncoder,userPrompt):
     # Tova e na ruka da pusnesh da vidi s daden input kakvo vrushta i sledva sushtite stupki
     # kato pri testvane s dataset
     testInput = [0.78, 2006/2000,
-                 "Brad Pitt action 2004 casino"]
+                 userPrompt]
     obrabotenText = text_preprocess(pd.Series(testInput[2]), tfidf_vectorizer.get_feature_names_out())
     obrabotenText = tfidf_vectorizer.transform(obrabotenText)
 
@@ -66,8 +66,6 @@ def singleTest(model,tfidf_vectorizer,movieTitleEncoder):
     # print(movieTitleEncoder.inverse_transform(model.predict(newDF)))
     # print(movieTitleEncoder.inverse_transform([pd.Series(model.predict_proba(newDF)[0]).idxmax()]))
     test = np.array(model.predict_proba(newDF)[0])
-    print(test.argsort()[-5:])
-    what = test.argsort()[-5:]
     result = movieTitleEncoder.inverse_transform(test.argsort()[-5:])
     return result
 
@@ -81,9 +79,8 @@ def singleTest(model,tfidf_vectorizer,movieTitleEncoder):
 # Test_Features = Testdata.drop(columns=["Series_Title"])  # Features
 # Test_Target = Testdata["Series_Title"]  # Target variable
 # print(rf_model.score(Test_Features, Test_Target))
-def testModel(model,tfidf_vectorizer,movieTitleEncoder,Testdata):
+def testModel(model,Testdata):
     # Dannite za test minavat prez sushtite stupki kato dannite za training
-    Testdata = prepareDatasets(Testdata, tfidf_vectorizer, False, movieTitleEncoder)
     # Danni koito ne polzvash prosto gi dropvash
     # Testdata = Testdata.drop(columns='Actors')
 
