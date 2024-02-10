@@ -41,11 +41,12 @@ def recommendMovie(userPrompt):
     Testdata = prepareDatasets(Testdata, tfidf_vectorizer, False, movieTitleEncoder)
     testModel(rf_model,Testdata)
 
-    # SVC_model = make_pipeline(StandardScaler(),SVC(gamma="scale", kernel="linear", random_state=42,probability=True))
-    # SVC_model.fit(X,y)
-    # singleTest(SVC_model, tfidf_vectorizer, movieTitleEncoder)
-    # TestdataSVC = pd.read_csv("testDataset.csv")
-    # testModel(SVC_model,tfidf_vectorizer,movieTitleEncoder,TestdataSVC)
+    SVC_model = make_pipeline(StandardScaler(),SVC(gamma="scale", kernel="linear", random_state=42,probability=True))
+    SVC_model.fit(X,y)
+    singleTest(SVC_model, tfidf_vectorizer, movieTitleEncoder,userPrompt)
+    TestdataSVC = pd.read_csv("testDataset.csv")
+    TestdataSVC = prepareDatasets(TestdataSVC, tfidf_vectorizer, False, movieTitleEncoder)
+    testModel(SVC_model,TestdataSVC)
 
     #Neshto ne raboti kakto trqbva
     # kernel = 1.0 * RBF(1.0)

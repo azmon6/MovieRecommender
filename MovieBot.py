@@ -118,7 +118,7 @@ bot_questions = []
 count = 0
 current_conversation = conversation
 
-while True:
+while False:
     try:
         user_input = input()
         bot_input = random.choice(current_conversation)
